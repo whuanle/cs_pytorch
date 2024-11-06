@@ -40,7 +40,6 @@ public static class PlotExtensions
             {
                 // 将图片复制到剪贴板
                 Clipboard.SetImage(pictureBox.Image);
-                MessageBox.Show("图片已复制到剪贴板");
             }
             else
             {
