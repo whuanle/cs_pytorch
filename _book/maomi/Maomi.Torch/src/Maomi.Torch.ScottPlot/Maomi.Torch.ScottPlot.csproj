@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<TargetFrameworks>net6.0-windows;net7.0-windows;net8.0-windows;</TargetFrameworks>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Maomi.ScottPlot.Winforms\Maomi.ScottPlot.Winforms.csproj" />
+		<ProjectReference Include="..\Maomi.Torch\Maomi.Torch.csproj" />
+	</ItemGroup>
+
+</Project>
