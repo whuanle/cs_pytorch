@@ -18,7 +18,7 @@
   ],
   "title": "C# Pytorch - 痴者工良",
   "author": "痴者工良",
-  "description": "这是一本关于 C# 多线程与异步 的书，作者 痴者工良",
+  "description": "这是一本关于 C# 深度学习 的书，作者 痴者工良",
   "language": "zh-hans",
   "links": {
     "sidebar": {
@@ -27,7 +27,7 @@
   },
   "pluginsConfig": {
     "tbfed-pagefooter": {
-      "copyright": "Copyright &copy 痴者工良 2022",
+      "copyright": "Copyright &copy 痴者工良 2024",
       "modify_label": "文档最后更新时间：",
       "modify_format": "YYYY-MM-DD HH:mm:ss"
     },
@@ -36,7 +36,7 @@
       "style": "background: none; max-height: 50px; min-height: 50px"
     },
     "github": {
-      "url": "https://github.com/whuanle/csharp_thread"
+      "url": "https://github.com/whuanle/cs_pytorch"
     },
     "prism": {
       "lang": {
