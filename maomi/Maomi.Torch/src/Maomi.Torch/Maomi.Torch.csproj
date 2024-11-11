@@ -5,9 +5,42 @@
 		<TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<RootNamespace>Maomi.Plot</RootNamespace>
+		<RootNamespace>Maomi.Torch</RootNamespace>
+
+		<IsPackable>true</IsPackable>
+		<PackageVersion>0.0.1</PackageVersion>
+		<Title>Maomi.Torch</Title>
+		<Description>
+			C# Pytorch 深度学习框架扩展包.
+		</Description>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIcon>package.png</PackageIcon>
+		<PackageProjectUrl>https://torch.whuanle.cn</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/whuanle/cs_pytorch</RepositoryUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryType>git</RepositoryType>
+		<PackageReleaseNotes>
+			C# Pytorch 深度学习框架扩展包.
+		</PackageReleaseNotes>
+		<IncludeSymbols>True</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
 
+	<ItemGroup>
+		<None Include="package.png" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\..\..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	
 	<ItemGroup>
 		<PackageReference Include="MathNet.Numerics" Version="5.0.0" />
 		<PackageReference Include="TorchSharp" Version="0.103.1" />

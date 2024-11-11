@@ -5,8 +5,41 @@
 		<TargetFrameworks>net6.0-windows;net7.0-windows;net8.0-windows;</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-	</PropertyGroup>
 
+		<IsPackable>true</IsPackable>
+		<PackageVersion>0.0.1</PackageVersion>
+		<Title>Maomi.Plot</Title>
+		<Description>
+			C# 绘图框架和 Pytorch 扩展包.
+		</Description>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIcon>package.png</PackageIcon>
+		<PackageProjectUrl>https://torch.whuanle.cn</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/whuanle/cs_pytorch</RepositoryUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryType>git</RepositoryType>
+		<PackageReleaseNotes>
+			C# 绘图框架和 Pytorch 扩展包.
+		</PackageReleaseNotes>
+		<IncludeSymbols>True</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<None Include="package.png" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\..\..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	
 	<ItemGroup>
 		<ProjectReference Include="..\Maomi.ScottPlot.Winforms\Maomi.ScottPlot.Winforms.csproj" />
 		<ProjectReference Include="..\Maomi.Torch\Maomi.Torch.csproj" />
