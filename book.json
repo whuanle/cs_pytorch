@@ -1,4 +1,4 @@
-{
+  {
   "plugins": [
     "tbfed-pagefooter",
     "mermaid-gb3",
@@ -13,6 +13,7 @@
     "hide-element",
     "head-append",
     "newtabs",
+    "katex-mhchem",
     "-highlight",
     "-livereload"
   ],
@@ -32,7 +33,7 @@
       "modify_format": "YYYY-MM-DD HH:mm:ss"
     },
     "insert-logo": {
-      "url": "/images/logo.jpg",
+      "url": "/images/logo.png",
       "style": "background: none; max-height: 50px; min-height: 50px"
     },
     "github": {
