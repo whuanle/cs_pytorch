@@ -1,22 +1,23 @@
   {
-  "plugins": [
-    "tbfed-pagefooter",
-    "mermaid-gb3",
-    "insert-logo",
-    "chapter-fold",
-    "advanced-emoji",
-    "github",
-    "splitter",
-    "alerts",
-    "popup",
-    "prism",
-    "hide-element",
-    "head-append",
-    "newtabs",
-    "katex-mhchem",
-    "-highlight",
-    "-livereload"
-  ],
+    "plugins": [
+      "tbfed-pagefooter",
+      "mermaid-gb3",
+      "insert-logo",
+      "chapter-fold",
+      "advanced-emoji",
+      "github",
+      "splitter",
+      "alerts",
+      "popup",
+      "prism",
+      "hide-element",
+      "head-append",
+      "newtabs",
+      "katex-mhchem",
+      "anchor-navigation-ex",
+      "-highlight",
+      "-livereload"
+    ],
   "title": "C# Pytorch - 痴者工良",
   "author": "痴者工良",
   "description": "这是一本关于 C# 深度学习 的书，作者 痴者工良",
@@ -26,55 +27,66 @@
       "痴者工良的博客": "https://www.whuanle.cn"
     }
   },
-  "pluginsConfig": {
-    "tbfed-pagefooter": {
-      "copyright": "Copyright &copy 痴者工良 2024",
-      "modify_label": "文档最后更新时间：",
-      "modify_format": "YYYY-MM-DD HH:mm:ss"
-    },
-    "insert-logo": {
-      "url": "/images/logo.png",
-      "style": "background: none; max-height: 50px; min-height: 50px"
-    },
-    "github": {
-      "url": "https://github.com/whuanle/cs_pytorch"
-    },
-    "prism": {
-      "lang": {
-        "flow": "typescript",
-        "shell": "bash"
+    "pluginsConfig": {
+      "tbfed-pagefooter": {
+        "copyright": "Copyright &copy 痴者工良 2024",
+        "modify_label": "文档最后更新时间：",
+        "modify_format": "YYYY-MM-DD HH:mm:ss"
       },
-      "ignore": [
-        "mermaid",
-        "eval-js"
-      ],
-      "css": [
-        "prismjs/themes/prism.css"
-      ],
-      "js": [
-        "prismjs/prism.js",
-        "prismjs/components.js",
-        "prismjs/components/prism-csharp.min.js",
-        "prismjs/components/prism-python.min.js",
-        "prismjs/components/prism-go.min.js",
-        "prismjs/components/prism-yaml.min.js",
-        "prismjs/components/prism-bash.min.js",
-        "prismjs/components/prism-shell-session.min.js"
-      ]
-    },
-    "hide-element": {
-      "elements": [
-        ".gitbook-link"
-      ]
-    },
-    "head-append": {
-      "code": [
-        "<SCRIPTTAG>",
-        "var _hmt = _hmt || [];",
-        "(function() {",
-        "})();",
-        "</SCRIPTTAG>"
-      ]
+      "insert-logo": {
+        "url": "/images/logo.png",
+        "style": "background: none; max-height: 50px; min-height: 50px"
+      },
+      "github": {
+        "url": "https://github.com/whuanle/cs_pytorch"
+      },
+      "prism": {
+        "lang": {
+          "flow": "typescript",
+          "shell": "bash"
+        },
+        "ignore": [
+          "mermaid",
+          "eval-js"
+        ],
+        "css": [
+          "prismjs/themes/prism.css"
+        ],
+        "js": [
+          "prismjs/prism.js",
+          "prismjs/components.js",
+          "prismjs/components/prism-csharp.min.js",
+          "prismjs/components/prism-python.min.js",
+          "prismjs/components/prism-go.min.js",
+          "prismjs/components/prism-yaml.min.js",
+          "prismjs/components/prism-bash.min.js",
+          "prismjs/components/prism-shell-session.min.js"
+        ]
+      },
+      "hide-element": {
+        "elements": [
+          ".gitbook-link"
+        ]
+      },
+      "head-append": {
+        "code": [
+          "<SCRIPTTAG>",
+          "var _hmt = _hmt || [];",
+          "(function() {",
+          "})();",
+          "</SCRIPTTAG>"
+        ]
+      },
+      "anchor-navigation-ex": {
+        "tocLevel1Icon": "fa fa-hand-o-right",
+        "tocLevel2Icon": "fa fa-hand-o-right",
+        "tocLevel3Icon": "fa fa-hand-o-right",
+        "multipleH1": false,
+        "multipleH2": false,
+        "multipleH3": false,
+        "multipleH4": false,
+        "showLevelIcon": true,
+        "showLevel": true
+      }
     }
-  }
 }
