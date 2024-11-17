@@ -35,3 +35,4 @@
   * [微积分基础](./01.base/04.higher.md)
   * [概率论基础](./01.base/05.odds.md)
 
+* [未整理](other/README.md)
