@@ -6,5 +6,6 @@
   * [Pytorch 基础](./01.base/02.base.md)
   * [线性代数基础](./01.base/03.linear.md)
   * [微积分基础](./01.base/04.higher.md)
+  * [梯度和梯度下降](./01.base/04.higher_2.md)
   * [概率论基础](./01.base/05.odds.md)
 * [未整理](other/README.md)
