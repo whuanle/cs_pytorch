@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "gitbook-plugin-katex-maomi": "^0.16.115",
     "gitbook-plugin-katex-mhchem": "^0.16.9",
     "graceful-fs": "^4.2.11"
   }

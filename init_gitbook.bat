@@ -1,2 +1,3 @@
-npm i gitbook-plugin-katex-mhchem
-gitbook install
+rm package-lock.json ;
+npm i ;
+gitbook install ;
