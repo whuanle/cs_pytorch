@@ -43,6 +43,7 @@
 	
 	<ItemGroup>
 		<PackageReference Include="MathNet.Numerics" Version="5.0.0" />
+		<PackageReference Include="SixLabors.ImageSharp.Drawing" Version="2.1.4" />
 		<PackageReference Include="TorchSharp" Version="0.103.1" />
 	</ItemGroup>
 

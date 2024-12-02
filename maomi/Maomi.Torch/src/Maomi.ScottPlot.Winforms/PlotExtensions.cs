@@ -1,5 +1,8 @@
 ﻿using System.Drawing;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using static TorchSharp.torch;
 
 namespace Maomi.Plot;
 
@@ -36,10 +39,10 @@ public static class PlotExtensions
         pictureBox.Image = System.Drawing.Image.FromStream(stream);
         return Show(pictureBox);
     }
-    public static Form Show(Bitmap bitmap)
+    public static Form Show(SixLabors.ImageSharp.Image bitmap)
     {
         PictureBox pictureBox = new PictureBox();
-        pictureBox.Image = bitmap;
+        pictureBox.Image = Bitmap.FromStream(new MemoryStream());
         return Show(pictureBox);
     }
     private static Form Show(PictureBox pictureBox)
@@ -84,5 +87,69 @@ public static class PlotExtensions
         t.SetApartmentState(ApartmentState.STA);
         t.Start();
         return form;
+    }
+}
+
+public static class TensorImageExtensions
+{
+    public static Image ToBitmap(this Tensor imageTensor)
+    {
+        // 将张量数据转换为 byte 数组
+        var imageSize = imageTensor.shape[1];
+        var byteArray = new byte[imageSize * imageSize];
+        var imageData = imageTensor.data<float>();
+
+        for (int i = 0; i < imageData.Count; i++)
+        {
+            byteArray[i] = (byte)(imageData[i] * 255);
+        }
+
+        // 创建图像并将其保存为 PNG 文件
+        Bitmap bitmap = new Bitmap((int)imageSize, (int)imageSize, PixelFormat.Format8bppIndexed);
+
+
+        var bitmapData = bitmap.LockBits(new Rectangle(0, 0, (int)imageSize, (int)imageSize), ImageLockMode.WriteOnly, bitmap.PixelFormat);
+        Marshal.Copy(byteArray, 0, bitmapData.Scan0, byteArray.Length);
+        bitmap.UnlockBits(bitmapData);
+
+        // 设置调色板
+        ColorPalette palette = bitmap.Palette;
+        for (int i = 0; i < 256; i++)
+        {
+            palette.Entries[i] = Color.FromArgb(i, i, i);
+        }
+        bitmap.Palette = palette;
+
+        return bitmap;
+    }
+    public static void TensorToPng(Tensor imageTensor, string filePath)
+    {
+        // 将张量数据转换为 byte 数组
+        var imageSize = imageTensor.shape[1];
+        var byteArray = new byte[imageSize * imageSize];
+        var imageData = imageTensor.data<float>();
+
+        for (int i = 0; i < imageData.Count; i++)
+        {
+            byteArray[i] = (byte)(imageData[i] * 255);
+        }
+
+        // 创建图像并将其保存为 PNG 文件
+        using Bitmap bitmap = new Bitmap((int)imageSize, (int)imageSize, PixelFormat.Format8bppIndexed);
+
+
+        var bitmapData = bitmap.LockBits(new Rectangle(0, 0, (int)imageSize, (int)imageSize), ImageLockMode.WriteOnly, bitmap.PixelFormat);
+        Marshal.Copy(byteArray, 0, bitmapData.Scan0, byteArray.Length);
+        bitmap.UnlockBits(bitmapData);
+
+        // 设置调色板
+        ColorPalette palette = bitmap.Palette;
+        for (int i = 0; i < 256; i++)
+        {
+            palette.Entries[i] = Color.FromArgb(i, i, i);
+        }
+
+        bitmap.Palette = palette;
+        bitmap.Save("fashion_mnist_image.png", ImageFormat.Png);
     }
 }
