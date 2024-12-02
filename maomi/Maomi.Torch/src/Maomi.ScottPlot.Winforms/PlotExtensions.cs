@@ -20,8 +20,30 @@ public static class PlotExtensions
 
         plot.SavePng(imgPath, width, height);
 
+        return Show(imgPath);
+
+    }
+
+    public static Form Show(string imgPath)
+    {
         PictureBox pictureBox = new PictureBox();
         pictureBox.Image = System.Drawing.Image.FromFile(imgPath);
+        return Show(pictureBox);
+    }
+    public static Form Show(Stream stream)
+    {
+        PictureBox pictureBox = new PictureBox();
+        pictureBox.Image = System.Drawing.Image.FromStream(stream);
+        return Show(pictureBox);
+    }
+    public static Form Show(Bitmap bitmap)
+    {
+        PictureBox pictureBox = new PictureBox();
+        pictureBox.Image = bitmap;
+        return Show(pictureBox);
+    }
+    private static Form Show(PictureBox pictureBox)
+    {
         pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
         pictureBox.Dock = DockStyle.Fill;
 
@@ -62,6 +84,5 @@ public static class PlotExtensions
         t.SetApartmentState(ApartmentState.STA);
         t.Start();
         return form;
-
     }
 }

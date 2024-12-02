@@ -28,6 +28,10 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Include="..\Maomi.Torch.ScottPlot\ScatterExtensions.cs" Link="ScatterExtensions.cs" />
+	</ItemGroup>
 	
 	<ItemGroup>
 		<None Include="package.png" Pack="true" PackagePath="\" />
@@ -44,6 +48,10 @@
 	<ItemGroup>
 		<PackageReference Include="ScottPlot" Version="5.0.43" />
 		<PackageReference Include="ScottPlot.WinForms" Version="5.0.43" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\Maomi.Torch\Maomi.Torch.csproj" />
 	</ItemGroup>
 
 </Project>
