@@ -1,7 +1,13 @@
 ﻿namespace Maomi.Plot;
 
+/// <summary>
+/// 图片格式.
+/// </summary>
 public enum ImageFormat
 {
+    /// <summary>
+    /// Png.
+    /// </summary>
     Png,
     Jpg,
     Bmp,

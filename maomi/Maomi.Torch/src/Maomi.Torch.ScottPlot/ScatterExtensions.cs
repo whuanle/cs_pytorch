@@ -8,6 +8,17 @@ namespace Maomi.Plot;
 
 public static class ScatterExtensions
 {
+    /// <summary>
+    /// 将张量数据绘制为散点图.
+    /// </summary>
+    /// <param name="adder"></param>
+    /// <param name="xs"></param>
+    /// <param name="ys"></param>
+    /// <param name="color"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
+    /// <exception cref="ArgumentException"></exception>
+    /// <exception cref="NotSupportedException"></exception>
     public static ScottPlot.Plottables.Scatter Scatter(this ScottPlot.PlottableAdder adder, torch.Tensor xs, torch.Tensor ys, ScottPlot.Color? color = null)
     {
         var xsSize = xs.size();

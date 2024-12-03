@@ -27,21 +27,13 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
 		<None Include="package.png" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="..\..\..\..\README.md">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
-	
-	<ItemGroup>
-		<ProjectReference Include="..\Maomi.ScottPlot.Winforms\Maomi.ScottPlot.Winforms.csproj" />
+		<PackageReference Include="ScottPlot" Version="5.0.43" />
 		<ProjectReference Include="..\Maomi.Torch\Maomi.Torch.csproj" />
 	</ItemGroup>
 

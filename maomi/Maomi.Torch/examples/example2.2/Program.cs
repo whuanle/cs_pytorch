@@ -5,10 +5,10 @@ using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using TorchSharp;
 using static TorchSharp.torch;
-using static TorchSharp.torch.optim;
+using nn = TorchSharp.torch.nn;
+using optim = TorchSharp.torch.optim;
 using datasets = TorchSharp.torchvision.datasets;
 using transforms = TorchSharp.torchvision.transforms;
-
 
 // 指定训练数据集
 var training_data = datasets.FashionMNIST(
@@ -32,13 +32,15 @@ for (int i = 0; i < training_data.Count; i++)
     var img = dic["data"];
     var label = dic["label"];
 
-    if (i > 1)
+    if (i > 2)
     {
         break;
     }
 
-    PlotExtensions.Show(img.ToImage());
+    img.SavePng($"data/{i}.png");
+    PlotExtensions.Show(img.ToBitmap());
 }
+
 Console.ReadLine();
 // 分批加载图像，打乱顺序
 var train_loader = torch.utils.data.DataLoader(training_data, batchSize: 100, shuffle: true);
