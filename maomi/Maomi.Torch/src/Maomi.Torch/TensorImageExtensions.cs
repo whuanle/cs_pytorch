@@ -3,6 +3,7 @@ using SixLabors.ImageSharp.Formats;
 using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.PixelFormats;
+using TorchSharp;
 using static System.Net.WebRequestMethods;
 using static TorchSharp.torch;
 
@@ -38,6 +39,62 @@ public static class TensorImageExtensions
         return image;
     }
 
+    public static Tensor LoadImage(string filePath)
+    {
+        // 读取图片
+        using var image = Image.Load<L8>(filePath);
+
+        // 获取图像的尺寸
+        int width = image.Width;
+        int height = image.Height;
+
+        // 创建一个浮点型数据数组来存储像素值
+        var imageData = new float[width * height];
+
+        // 将图像数据转换为浮点型，并填充到数组中
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                var pixel = image[x, y];
+                imageData[y * width + x] = pixel.PackedValue / 255f;  // 将数据标准化为[0, 1]
+            }
+        }
+
+        // 将数据转换为 TorchSharp 的 Tensor
+        Tensor imageTensor = torch.tensor(imageData, new long[] { 1, height, width });
+
+        return imageTensor;
+    } 
+    public static Tensor LoadImage<TPixel>(string filePath)
+        where TPixel : unmanaged, IPixel<TPixel>
+    {
+        // 读取图片
+        using var image = Image<L16>.Load<L16>(filePath);
+
+        // 获取图像的尺寸
+        int width = image.Width;
+        int height = image.Height;
+
+        // 创建一个浮点型数据数组来存储像素值
+        var imageData = new float[width * height];
+
+        // 将图像数据转换为浮点型，并填充到数组中
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                var pixel = image[x, y];
+                imageData[y * width + x] = pixel.PackedValue / 255f;  // 将数据标准化为[0, 1]
+            }
+        }
+
+        // 将数据转换为 TorchSharp 的 Tensor
+        Tensor imageTensor = torch.tensor(imageData, new long[] { 1, height, width });
+
+        return imageTensor;
+    }
+
     public static void SavePng(this Tensor imageTensor, string filePath)
     {
         // 将张量数据转换为 byte 数组
@@ -55,7 +112,9 @@ public static class TensorImageExtensions
             }
         }
 
-        image.Save(filePath, new PngEncoder());
+        using var stream = System.IO.File.Create(filePath);
+
+        image.Save(stream, new PngEncoder());
     }
 
     public static void SaveJpeg(this Tensor imageTensor, string filePath)
@@ -75,7 +134,8 @@ public static class TensorImageExtensions
             }
         }
 
-        image.Save(filePath, new JpegEncoder());
+        using var stream = System.IO.File.Create(filePath);
+        image.Save(stream, new JpegEncoder());
     }
 
     /// <summary>
@@ -101,6 +161,7 @@ public static class TensorImageExtensions
             }
         }
 
-        image.Save(filePath, new JpegEncoder());
+        using var stream = System.IO.File.Create(filePath);
+        image.Save(stream, new JpegEncoder());
     }
 }
