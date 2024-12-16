@@ -6,7 +6,7 @@ using TorchSharp;
 
 namespace Maomi.Torch;
 
-public static partial class MMP
+public static partial class MMS
 {
     /// <summary>
     /// 将张量数据绘制为散点图.

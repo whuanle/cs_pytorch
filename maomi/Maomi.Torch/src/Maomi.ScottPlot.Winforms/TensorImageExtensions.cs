@@ -8,7 +8,7 @@ namespace Maomi.Torch;
 /// <summary>
 /// 使用 System.Drawing.Imaging 命名空间中的类将张量数据转换为图像，只能在 Windows 下使用.
 /// </summary>
-public static partial class MMP
+public static partial class MMS
 {
     /// <summary>
     /// 张量转换为位图.
