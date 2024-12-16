@@ -1,4 +1,4 @@
-﻿namespace Maomi.Plot;
+﻿namespace Maomi.Torch;
 
 /// <summary>
 /// 图片格式.

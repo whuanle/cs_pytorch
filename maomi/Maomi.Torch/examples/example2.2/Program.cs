@@ -1,4 +1,4 @@
-﻿using Maomi.Plot;
+﻿using Maomi.Torch;
 using Maomi.Torch;
 using System.Drawing;
 using System.Drawing.Imaging;

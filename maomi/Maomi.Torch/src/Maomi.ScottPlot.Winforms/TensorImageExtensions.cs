@@ -3,12 +3,12 @@ using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using static TorchSharp.torch;
 
-namespace Maomi.Plot;
+namespace Maomi.Torch;
 
 /// <summary>
 /// 使用 System.Drawing.Imaging 命名空间中的类将张量数据转换为图像，只能在 Windows 下使用.
 /// </summary>
-public static class TensorImageExtensions
+public static partial class MMP
 {
     /// <summary>
     /// 张量转换为位图.

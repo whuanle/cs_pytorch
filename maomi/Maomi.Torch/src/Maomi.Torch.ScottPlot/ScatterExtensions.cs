@@ -4,9 +4,9 @@ using ScottPlot.Plottables;
 using System.Numerics;
 using TorchSharp;
 
-namespace Maomi.Plot;
+namespace Maomi.Torch;
 
-public static class ScatterExtensions
+public static partial class MMP
 {
     /// <summary>
     /// 将张量数据绘制为散点图.

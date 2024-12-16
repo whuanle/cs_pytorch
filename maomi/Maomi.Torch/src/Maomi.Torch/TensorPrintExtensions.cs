@@ -6,7 +6,7 @@ namespace Maomi.Torch;
 /// <summary>
 /// extensions.
 /// </summary>
-public static class TensorPrintExtensions
+public static partial class MM
 {
     /// <summary>
     /// Uses Console.WriteLine to print a array expression on stdout.

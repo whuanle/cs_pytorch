@@ -55,7 +55,7 @@ model.load("mnist_mlp_model.pkl");
 model.eval();
 
 // 加载图片为张量
-torch.Tensor image = TensorImageExtensions.LoadImage("0.jpg");
+torch.Tensor image = Maomi.Torch.MM.LoadImage("0.jpg");
 image = image.reshape(-1, 28 * 28);
 
 var transform = transforms.ConvertImageDtype(ScalarType.Float32);

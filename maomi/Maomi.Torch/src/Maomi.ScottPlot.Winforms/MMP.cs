@@ -4,9 +4,9 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using static TorchSharp.torch;
 
-namespace Maomi.Plot;
+namespace Maomi.Torch;
 
-public static class PlotExtensions
+public static partial class MMP
 {
     /// <summary>
     /// 绘制图形.

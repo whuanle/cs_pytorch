@@ -12,7 +12,7 @@ namespace Maomi.Torch;
 /// <summary>
 /// Tensor 图片数据集处理.
 /// </summary>
-public static class TensorImageExtensions
+public static partial class MM
 {
     /// <summary>
     /// 将张量数据转换为 <see cref="SixLabors.ImageSharp.Image"/> 对象.
@@ -65,12 +65,11 @@ public static class TensorImageExtensions
         Tensor imageTensor = torch.tensor(imageData, new long[] { 1, height, width });
 
         return imageTensor;
-    } 
-    public static Tensor LoadImage<TPixel>(string filePath)
-        where TPixel : unmanaged, IPixel<TPixel>
+    }
+    public static Tensor LoadImageRgba32(string filePath)
     {
         // 读取图片
-        using var image = Image<L16>.Load<L16>(filePath);
+        using var image = Image.Load<Rgba32>(filePath);
 
         // 获取图像的尺寸
         int width = image.Width;
@@ -86,6 +85,37 @@ public static class TensorImageExtensions
             {
                 var pixel = image[x, y];
                 imageData[y * width + x] = pixel.PackedValue / 255f;  // 将数据标准化为[0, 1]
+            }
+        }
+
+        // 将数据转换为 TorchSharp 的 Tensor
+        Tensor imageTensor = torch.tensor(imageData, new long[] { 1, height, width });
+
+        return imageTensor;
+    }
+    public static Tensor LoadImage<TPixel>(string filePath)
+        where TPixel : unmanaged, IPixel<TPixel>
+    {
+        // 读取图片
+        using var image = Image.Load<Rgb24>(filePath);
+
+        // 获取图像的尺寸
+        int width = image.Width;
+        int height = image.Height;
+
+        // 创建一个浮点型数据数组来存储像素值（每个像素包含3个通道：R, G, B）
+        var imageData = new float[width * height * 3];
+
+        // 将图像数据转换为浮点型，并填充到数组中
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                var pixel = image[x, y];
+                int index = (y * width + x) * 3;
+                imageData[index] = pixel.R / 255f;     // 将红色通道标准化为[0, 1]
+                imageData[index + 1] = pixel.G / 255f; // 将绿色通道标准化为[0, 1]
+                imageData[index + 2] = pixel.B / 255f; // 将蓝色通道标准化为[0, 1]
             }
         }
 
