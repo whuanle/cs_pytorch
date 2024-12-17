@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static TorchSharp.torch;
+using System.Runtime.CompilerServices;
+using TorchSharp;
 
 namespace Maomi.Torch;
 public static partial class MM
@@ -20,7 +22,7 @@ public static partial class MM
 
     public static void SaveJpeg(this Tensor imageTensor, string filePath)
     {
-        SaveImage(imageTensor,filePath, new JpegEncoder());
+        SaveImage(imageTensor, filePath, new JpegEncoder());
     }
 
     /// <summary>
@@ -49,9 +51,63 @@ public static partial class MM
             throw new ArgumentException("张量数据维度不正确，应为 3 或 4 维");
         }
 
+        switch (imageTensor.dtype)
+        {
+            case torch.ScalarType.Byte:
+                ConvertTensorByte(imageTensor, filePath, imageEncoder, H, W); break;
+            case torch.ScalarType.Float32:
+                ConvertTensorFloat32(imageTensor, filePath, imageEncoder, H, W); break;
+            case torch.ScalarType.Float64:
+                ConvertTensorFloat64(imageTensor, filePath, imageEncoder, H, W); break;
+            default: throw new NotSupportedException($"不支持的数据类型{imageTensor.dtype}");
+        }
+    }
+
+    private static void ConvertTensorByte(Tensor imageTensor, string filePath, ImageEncoder imageEncoder, long H, long W)
+    {
+        // 将张量数据转换为 byte 数组
+        var byteArray = new byte[W * H];
+        var imageData = imageTensor.data<byte>();
+
+        var image = new Image<L8>((int)W, (int)H);
+        for (int y = 0; y < H; y++)
+        {
+            for (int x = 0; x < W; x++)
+            {
+                var pixelValue = (byte)(imageData[y * W + x] * 255);
+                image[x, y] = new L8(pixelValue);
+            }
+        }
+
+        using var stream = System.IO.File.Create(filePath);
+        image.Save(stream, imageEncoder);
+    }
+
+    private static void ConvertTensorFloat32(Tensor imageTensor, string filePath, ImageEncoder imageEncoder, long H, long W)
+    {
         // 将张量数据转换为 byte 数组
         var byteArray = new byte[W * H];
         var imageData = imageTensor.data<float>();
+
+        var image = new Image<L8>((int)W, (int)H);
+        for (int y = 0; y < H; y++)
+        {
+            for (int x = 0; x < W; x++)
+            {
+                var pixelValue = (byte)(imageData[y * W + x] * 255);
+                image[x, y] = new L8(pixelValue);
+            }
+        }
+
+        using var stream = System.IO.File.Create(filePath);
+        image.Save(stream, imageEncoder);
+    }
+
+    private static void ConvertTensorFloat64(Tensor imageTensor, string filePath, ImageEncoder imageEncoder, long H, long W)
+    {
+        // 将张量数据转换为 byte 数组
+        var byteArray = new byte[W * H];
+        var imageData = imageTensor.data<double>();
 
         var image = new Image<L8>((int)W, (int)H);
         for (int y = 0; y < H; y++)
