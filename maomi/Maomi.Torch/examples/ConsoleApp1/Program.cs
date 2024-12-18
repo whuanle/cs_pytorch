@@ -1,6 +1,8 @@
 ﻿using Maomi.Torch;
+using ScottPlot;
 using SkiaSharp;
 using TorchSharp;
+using static Tensorboard.TensorShapeProto.Types;
 using static TorchSharp.torch;
 using static TorchSharp.torchvision;
 using model = TorchSharp.torchvision.models;
@@ -16,7 +18,7 @@ var preprocess = transforms.Compose(
     );
 
 // 加载图形并缩放裁剪
-var img = MM.LoadImageByChannel3("bobby.jpg",  256, 256);
+var img = MM.LoadImageByChannel3("bobby.jpg", 256, 256);
 
 // 使用转换函数处理图形
 img = preprocess.call(img);
@@ -26,5 +28,26 @@ resnet101.eval();
 
 var batch_t = torch.unsqueeze(img, 0);
 
-var @out =  resnet101.call(img);
+var @out = resnet101.call(img);
 @out.print();
+
+List<string> labels = new();
+using (StreamReader sr = new StreamReader("imagenet_classes.txt"))
+{
+    string? line;
+    while ((line = sr.ReadLine()) != null)
+    {
+        labels.Add(line.Trim());
+    }
+}
+
+(Tensor values, Tensor indexes) = torch.max(@out, 1);
+
+var ids = indexes.ToArray<long>();
+var vs = values.ToArray<float>();
+
+var percentage = torch.nn.functional.softmax(@out, dim : 1)[0] * 100;
+Console.WriteLine(labels[(int)ids[0]]);
+Console.WriteLine(percentage[ids[0]]);
+
+Console.WriteLine("预测结果:" + labels[(int)ids[0]] + ",概率:" + vs[0]);
