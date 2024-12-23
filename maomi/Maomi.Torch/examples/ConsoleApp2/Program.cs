@@ -1,18 +1,11 @@
 ﻿using Maomi.Torch;
 using ScottPlot;
-using ScottPlot.PlotStyles;
 using SkiaSharp;
-using System.Threading.Channels;
 using TorchSharp;
 using static Tensorboard.TensorShapeProto.Types;
 using static TorchSharp.torch;
 using static TorchSharp.torchvision;
 using model = TorchSharp.torchvision.models;
-
-var modelPath = "C:\\Users\\ASUS\\.cache\\torch\\hub\\checkpoints\\resnet101-5d3b4d8f.pth";
-var weights = torch.load(modelPath);
-
-await Task.Delay(5000);
 
 var device = MM.GetOpTimalDevice();
 torch.set_default_device(device);
@@ -30,15 +23,12 @@ var img = MM.LoadImageByChannel3("bobby.jpg", 256, 256);
 // 使用转换函数处理图形
 img = preprocess.call(img);
 
-img = img.reshape(3, img.shape[2], img.shape[3]);
-var batch_t = torch.unsqueeze(img, 0);
-
 var resnet101 = model.resnet101(device: device);
-//resnet101.load_state_dict(torch.load("C:\\Users\\ASUS\\.cache\\torch\\hub\\checkpoints\\resnet101-63fe2227.pth").state_dict());
 resnet101.eval();
 
+var batch_t = torch.unsqueeze(img, 0);
 
-var @out = resnet101.call(batch_t);
+var @out = resnet101.call(img);
 @out.print();
 
 List<string> labels = new();
@@ -51,13 +41,10 @@ using (StreamReader sr = new StreamReader("imagenet_classes.txt"))
     }
 }
 
-var percentage = torch.nn.functional.softmax(@out, dim: 1)[0] * 100;
+(_, Tensor index) = torch.max(@out, 1);
 
-// 对识别结果和分数进行排序
-var (_, indices) = torch.sort(@out, descending: true);
+var i = index.ToArray<long>()[0];
 
-// 输出概率前五的物品名称
-for (int i = 0; i < 5; i++)
-{
-    Console.WriteLine("result:" + labels[(int)indices[0][i]] + ",chance:" + percentage[(int)indices[0][i]].item<float>().ToString());
-}
+var percentage = torch.nn.functional.softmax(@out, dim : 1)[0] * 100;
+
+Console.WriteLine("预测结果:" + labels[(int)i] + ",概率:" + percentage[(int)i].item<float>().ToString());
