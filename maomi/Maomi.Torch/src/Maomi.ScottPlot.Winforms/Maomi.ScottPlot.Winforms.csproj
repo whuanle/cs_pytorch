@@ -30,7 +30,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Include="..\Maomi.Torch.ScottPlot\ImageFormat.cs" Link="ImageFormat.cs" />
 	  <Compile Include="..\Maomi.Torch.ScottPlot\ScatterExtensions.cs" Link="ScatterExtensions.cs" />
 	</ItemGroup>
 	

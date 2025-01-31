@@ -2,35 +2,8 @@
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using TorchSharp;
-using static TorchSharp.torch;
 
 namespace Maomi.Torch;
-
-public static partial class MM
-{
-    /// <summary>
-    /// 获取最优的设备.
-    /// </summary>
-    /// <returns></returns>
-    public static torch.Device GetOpTimalDevice()
-    {
-        Device defaultDevice = default!;
-        if (torch.cuda.is_available())
-        {
-            defaultDevice = torch.device("cuda", index: 0);
-        }
-        else if (torch.mps_is_available())
-        {
-            defaultDevice = torch.device("mps", index: 0);
-        }
-        else
-        {
-            defaultDevice = torch.device("cpu");
-        }
-
-        return defaultDevice;
-    }
-}
 
 /// <summary>
 /// extensions.
@@ -38,6 +11,7 @@ public static partial class MM
 public static partial class MM
 {
     /// <summary>
+    /// Convert a tensor to an array.
     /// 张量转换为数组.
     /// </summary>
     /// <typeparam name="T"></typeparam>
@@ -77,102 +51,100 @@ public static partial class MM
         throw new NotSupportedException($"Unsupported data type {tensor.dtype}");
     }
 
+    /// <summary>
+    /// Convert a tensor to a byte[].<br />
+    /// 将张量转换为 byte[].
+    /// </summary>
+    /// <param name="tensor"></param>
+    /// <returns></returns>
     public static byte[] ToByteArray(this torch.Tensor tensor)
     {
-        byte[] array = new byte[tensor.size()[0]];
-
-        for (int i = 0; i < array.Length; i++)
-        {
-            array[i] = tensor[i].ToByte();
-        }
-
-        return array;
+        return tensor.data<byte>().ToArray();
     }
 
+    /// <summary>
+    /// Convert a tensor to a sbyte[].<br />
+    /// 将张量转换为 sbyte[].
+    /// </summary>
+    /// <param name="tensor"></param>
+    /// <returns></returns>
     public static sbyte[] ToInt8Array(this torch.Tensor tensor)
     {
-        sbyte[] array = new sbyte[tensor.size()[0]];
-
-        for (int i = 0; i < array.Length; i++)
-        {
-            array[i] = tensor[i].ToSByte();
-        }
-
-        return array;
+        return tensor.data<sbyte>().ToArray();
     }
 
+    /// <summary>
+    /// Convert a tensor to a int16[].<br />
+    /// 将张量转换为 int16[]
+    /// </summary>
+    /// <param name="tensor"></param>
+    /// <returns></returns>
     public static Int16[] ToInt16Array(this torch.Tensor tensor)
     {
-        Int16[] array = new Int16[tensor.size()[0]];
-
-        for (int i = 0; i < array.Length; i++)
-        {
-            array[i] = tensor[i].ToInt16();
-        }
-
-        return array;
+        return tensor.data<Int16>().ToArray();
     }
 
+    /// <summary>
+    /// Convert a tensor to a int32[].<br />
+    /// 将张量转换为 int32[].
+    /// </summary>
+    /// <param name="tensor"></param>
+    /// <returns></returns>
     public static Int32[] ToInt32Array(this torch.Tensor tensor)
     {
-        Int32[] array = new Int32[tensor.size()[0]];
-
-        for (int i = 0; i < array.Length; i++)
-        {
-            array[i] = tensor[i].ToInt32();
-        }
-
-        return array;
+        return tensor.data<Int32>().ToArray();
     }
 
+    /// <summary>
+    /// Convert a tensor to a int64[].<br />
+    /// 将张量转换为 int64[].
+    /// </summary>
+    /// <param name="tensor"></param>
+    /// <returns></returns>
     public static Int64[] ToInt64Array(this torch.Tensor tensor)
     {
-        Int64[] array = new Int64[tensor.size()[0]];
-
-        for (int i = 0; i < array.Length; i++)
-        {
-            array[i] = tensor[i].ToInt64();
-        }
-
-        return array;
+        return tensor.data<Int64>().ToArray();
     }
 
+    /// <summary>
+    /// Convert a tensor to a float16[].<br />
+    /// 将张量转换为 float16[].
+    /// </summary>
+    /// <param name="tensor"></param>
+    /// <returns></returns>
     public static Half[] ToFloat16Array(this torch.Tensor tensor)
     {
-        Half[] array = new Half[tensor.size()[0]];
-
-        for (int i = 0; i < array.Length; i++)
-        {
-            array[i] = tensor[i].ToHalf();
-        }
-
-        return array;
+        return tensor.data<Half>().ToArray();
     }
 
+    /// <summary>
+    /// Convert a tensor to a float[].<br />
+    /// 将张量转换为 float32[].
+    /// </summary>
+    /// <param name="tensor"></param>
+    /// <returns></returns>
     public static float[] ToFloat32Array(this torch.Tensor tensor)
     {
-        float[] array = new float[tensor.size()[0]];
-
-        for (int i = 0; i < array.Length; i++)
-        {
-            array[i] = tensor[i].ToSingle();
-        }
-
-        return array;
+        return tensor.data<float>().ToArray();
     }
 
+    /// <summary>
+    /// Convert a tensor to a double[].<br />
+    /// 将张量转换为 float64[].
+    /// </summary>
+    /// <param name="tensor"></param>
+    /// <returns></returns>
     public static double[] ToFloat64Array(this torch.Tensor tensor)
     {
-        double[] array = new double[tensor.size()[0]];
-
-        for (int i = 0; i < array.Length; i++)
-        {
-            array[i] = tensor[i].ToDouble();
-        }
-
-        return array;
+        return tensor.data<double>().ToArray();
     }
 
+    /// <summary>
+    /// Convert a tensor to a Complex32[].<br />
+    /// 将张量转换为 Complex32[].
+    /// </summary>
+    /// <param name="tensor"></param>
+    /// <returns></returns>
     public static Complex32[] ToComplex32Array(this torch.Tensor tensor)
     {
         Complex32[] array = new Complex32[tensor.size()[0]];
@@ -187,33 +159,34 @@ public static partial class MM
         return array;
     }
 
+    /// <summary>
+    /// Convert a tensor to a Complex64[].<br />
+    /// 将张量转换为 Complex64[].
+    /// </summary>
+    /// <param name="tensor"></param>
+    /// <returns></returns>
     public static Complex[] ToComplex64Array(this torch.Tensor tensor)
     {
-        Complex[] array = new Complex[tensor.size()[0]];
-
-        for (int i = 0; i < array.Length; i++)
-        {
-            var complex = tensor.ToComplex64();
-            array[i] = new Complex(complex.Real, complex.Imaginary);
-
-        }
-
-        return array;
+        return tensor.data<Complex>().ToArray();
     }
 
+    /// <summary>
+    /// Convert a tensor to a bool[].<br />
+    /// 将张量转换为 bool[].
+    /// </summary>
+    /// <param name="tensor"></param>
+    /// <returns></returns>
     public static bool[] ToBoolArray(this torch.Tensor tensor)
     {
-        bool[] array = new bool[tensor.size()[0]];
-
-        for (int i = 0; i < array.Length; i++)
-        {
-            array[i] = tensor[i].ToBoolean();
-        }
-
-        return array;
+        return tensor.data<bool>().ToArray();
     }
 
-
+    /// <summary>
+    /// Convert a tensor to a Scalar[].<br />
+    /// 将张量转换为 Scalar[].
+    /// </summary>
+    /// <param name="tensor"></param>
+    /// <returns></returns>
     public static Scalar[] ToBfloat16Array(this torch.Tensor tensor)
     {
         Scalar[] array = new Scalar[tensor.size()[0]];

@@ -6,9 +6,13 @@ using TorchSharp;
 
 namespace Maomi.Torch;
 
+/// <summary>
+/// Draw image.
+/// </summary>
 public static partial class MMS
 {
     /// <summary>
+    /// Plot the tensor data as a scatter plot.
     /// 将张量数据绘制为散点图.
     /// </summary>
     /// <param name="adder"></param>

@@ -1,18 +1,8 @@
 ﻿using Maomi.Torch;
-using ScottPlot;
-using ScottPlot.PlotStyles;
-using SkiaSharp;
-using System.Threading.Channels;
 using TorchSharp;
-using static Tensorboard.TensorShapeProto.Types;
-using static TorchSharp.torch;
+using TorchSharp.Modules;
 using static TorchSharp.torchvision;
 using model = TorchSharp.torchvision.models;
-
-var modelPath = "C:\\Users\\ASUS\\.cache\\torch\\hub\\checkpoints\\resnet101-5d3b4d8f.pth";
-var weights = torch.load(modelPath);
-
-await Task.Delay(5000);
 
 var device = MM.GetOpTimalDevice();
 torch.set_default_device(device);
@@ -25,7 +15,8 @@ var preprocess = transforms.Compose(
     );
 
 // 加载图形并缩放裁剪
-var img = MM.LoadImageByChannel3("bobby.jpg", 256, 256);
+var img = MM.LoadImage("bobby.jpg");
+img.ShowImage();
 
 // 使用转换函数处理图形
 img = preprocess.call(img);
@@ -34,9 +25,10 @@ img = img.reshape(3, img.shape[2], img.shape[3]);
 var batch_t = torch.unsqueeze(img, 0);
 
 var resnet101 = model.resnet101(device: device);
-//resnet101.load_state_dict(torch.load("C:\\Users\\ASUS\\.cache\\torch\\hub\\checkpoints\\resnet101-63fe2227.pth").state_dict());
-resnet101.eval();
-
+var r = resnet101.load(location: "E:\\项目\\模型项目\\torchcsharp\\dats\\resnet101.dat");
+r = r.to(device);
+r.eval();
+resnet101 = r as ResNet;
 
 var @out = resnet101.call(batch_t);
 @out.print();

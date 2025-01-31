@@ -7,6 +7,7 @@ namespace Maomi.Torch;
 public static partial class MM
 {
     /// <summary>
+    /// The tensor data into <see cref= "SixLabors.ImageSharp.Image" /> object.<br />
     /// 将张量数据转换为 <see cref="SixLabors.ImageSharp.Image"/> 对象.
     /// </summary>
     /// <param name="imageTensor"></param>
@@ -32,6 +33,7 @@ public static partial class MM
     }
 
     /// <summary>
+    /// The tensor data into <see cref= "SixLabors.ImageSharp.Image" /> object.<br />
     /// 将张量数据转换为 <see cref="SixLabors.ImageSharp.Image"/> 对象.
     /// </summary>
     /// <param name="imageTensor"></param>
@@ -57,6 +59,7 @@ public static partial class MM
     }
 
     /// <summary>
+    /// The tensor data into <see cref= "SixLabors.ImageSharp.Image" /> object.<br />
     /// 将张量数据转换为 <see cref="SixLabors.ImageSharp.Image"/> 对象.
     /// </summary>
     /// <param name="imageTensor"></param>
@@ -82,6 +85,7 @@ public static partial class MM
     }
 
     /// <summary>
+    /// The tensor data into <see cref= "SixLabors.ImageSharp.Image" /> object.<br />
     /// 将张量数据转换为 <see cref="SixLabors.ImageSharp.Image"/> 对象.
     /// </summary>
     /// <param name="imageTensor"></param>
