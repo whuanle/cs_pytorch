@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "examples\Con
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp2", "examples\ConsoleApp2\ConsoleApp2.csproj", "{40B0C6EA-66F9-4058-A921-C0630AF088A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maomi.Torch.Tests", "src\Maomi.Torch.Tests\Maomi.Torch.Tests.csproj", "{F31BA131-482C-487F-9CEC-4EE8BC27EC82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{40B0C6EA-66F9-4058-A921-C0630AF088A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40B0C6EA-66F9-4058-A921-C0630AF088A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40B0C6EA-66F9-4058-A921-C0630AF088A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F31BA131-482C-487F-9CEC-4EE8BC27EC82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F31BA131-482C-487F-9CEC-4EE8BC27EC82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F31BA131-482C-487F-9CEC-4EE8BC27EC82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F31BA131-482C-487F-9CEC-4EE8BC27EC82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{EBFAA77A-1699-4847-BB44-BD55E264F80A} = {4CCEC2E0-F0FD-4FD1-A100-948F0E295109}
 		{F00113D3-86F7-49FB-B4EB-01C530DCDE32} = {4CCEC2E0-F0FD-4FD1-A100-948F0E295109}
 		{40B0C6EA-66F9-4058-A921-C0630AF088A6} = {4CCEC2E0-F0FD-4FD1-A100-948F0E295109}
+		{F31BA131-482C-487F-9CEC-4EE8BC27EC82} = {9A87C325-8362-4AE9-B9D9-A8141A93CB24}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37F4B8D2-B0BE-4FB5-A586-042A8F3BA54E}

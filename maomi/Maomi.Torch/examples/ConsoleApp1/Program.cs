@@ -25,10 +25,9 @@ img = img.reshape(3, img.shape[2], img.shape[3]);
 var batch_t = torch.unsqueeze(img, 0);
 
 var resnet101 = model.resnet101(device: device);
-var r = resnet101.load(location: "E:\\项目\\模型项目\\torchcsharp\\dats\\resnet101.dat");
-r = r.to(device);
-r.eval();
-resnet101 = r as ResNet;
+resnet101 = resnet101.LoadResnet101();
+resnet101.to(device);
+resnet101.eval();
 
 var @out = resnet101.call(batch_t);
 @out.print();

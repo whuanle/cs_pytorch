@@ -8,7 +8,12 @@ public static partial class MM
 {
     private const string ReposityBase = "https://huggingface.co/whuanle/torchcsharp/resolve/main/dats/";
 
-    public static async Task<AlexNet> LoadModel(this AlexNet net, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    public static AlexNet LoadModel(this AlexNet net, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    {
+        return LoadModelAsync(net, strict, skip, loadedParameters).Result;
+    }
+
+    public static async Task<AlexNet> LoadModelAsync(this AlexNet net, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
     {
         // https://huggingface.co/whuanle/torchcsharp/resolve/main/dats/alexnet.dat
 
@@ -41,8 +46,11 @@ public static partial class MM
         File.Move(tempFilePath, modelPath);
         return (net.load(location: modelPath, strict: strict, skip: skip, loadedParameters: loadedParameters) as AlexNet)!;
     }
-
-    public static async Task<GoogleNet> LoadModel(this GoogleNet net, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    public static GoogleNet LoadModel(this GoogleNet net, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    {
+        return LoadModelAsync(net, strict, skip, loadedParameters).Result;
+    }
+    public static async Task<GoogleNet> LoadModelAsync(this GoogleNet net, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
     {
         // https://huggingface.co/whuanle/torchcsharp/resolve/main/dats/googlenet.dat
 
@@ -74,9 +82,12 @@ public static partial class MM
 
         File.Move(tempFilePath, modelPath);
         return (net.load(location: modelPath, strict: strict, skip: skip, loadedParameters: loadedParameters) as GoogleNet)!;
-    } 
-    
-    public static async Task<InceptionV3> LoadModel(this InceptionV3 net, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    }
+    public static InceptionV3 LoadModel(this InceptionV3 net, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    {
+        return LoadModelAsync(net, strict, skip, loadedParameters).Result;
+    }
+    public static async Task<InceptionV3> LoadModelAsync(this InceptionV3 net, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
     {
         // https://huggingface.co/whuanle/torchcsharp/resolve/main/dats/inception_v3.dat
 
@@ -110,7 +121,12 @@ public static partial class MM
         return (net.load(location: modelPath, strict: strict, skip: skip, loadedParameters: loadedParameters) as InceptionV3)!;
     }
 
-    public static async Task<MobileNetV2> LoadModel(this MobileNetV2 net, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    public static MobileNetV2 LoadModel(this MobileNetV2 net, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    {
+        return LoadModelAsync(net, strict, skip, loadedParameters).Result;
+    }
+
+    public static async Task<MobileNetV2> LoadModelAsync(this MobileNetV2 net, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
     {
         // https://huggingface.co/whuanle/torchcsharp/resolve/main/dats/mobilenet_v2.dat
 
@@ -143,8 +159,13 @@ public static partial class MM
         File.Move(tempFilePath, modelPath);
         return (net.load(location: modelPath, strict: strict, skip: skip, loadedParameters: loadedParameters) as MobileNetV2)!;
     }
-    
-    public static async Task<MobileNetV3> LoadMobileNetV3Large(this MobileNetV3 net, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+
+    public static MobileNetV3 LoadMobileNetV3Large(this MobileNetV3 net, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    {
+        return LoadMobileNetV3LargeAsync(net, strict, skip, loadedParameters).Result;
+    }
+
+    public static async Task<MobileNetV3> LoadMobileNetV3LargeAsync(this MobileNetV3 net, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
     {
         // https://huggingface.co/whuanle/torchcsharp/resolve/main/dats/mobilenet_v3_large.dat
 
@@ -178,7 +199,12 @@ public static partial class MM
         return (net.load(location: modelPath, strict: strict, skip: skip, loadedParameters: loadedParameters) as MobileNetV3)!;
     }
 
-    public static async Task<MobileNetV3> LoadMobileNetV3Small(this MobileNetV3 net, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    public static MobileNetV3 LoadMobileNetV3Small(this MobileNetV3 net, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    {
+        return LoadMobileNetV3SmallAsync(net, strict, skip, loadedParameters).Result;
+    }
+
+    public static async Task<MobileNetV3> LoadMobileNetV3SmallAsync(this MobileNetV3 net, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
     {
         // https://huggingface.co/whuanle/torchcsharp/resolve/main/dats/mobilenet_v3_small.dat
 
@@ -212,7 +238,12 @@ public static partial class MM
         return (net.load(location: modelPath, strict: strict, skip: skip, loadedParameters: loadedParameters) as MobileNetV3)!;
     }
 
-    public static async Task<ResNet> LoadResnet101(this ResNet resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    public static ResNet LoadResnet101(this ResNet resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    {
+        return LoadResnet101Async(resnet, strict, skip, loadedParameters).Result;
+    }
+
+    public static async Task<ResNet> LoadResnet101Async(this ResNet resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
     {
         // https://huggingface.co/whuanle/torchcsharp/resolve/main/dats/resnet101.dat
 
@@ -246,7 +277,12 @@ public static partial class MM
         return (resnet.load(location: modelPath, strict: strict, skip: skip, loadedParameters: loadedParameters) as ResNet)!;
     }
 
-    public static async Task<ResNet> LoadResnet152(this ResNet resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    public static ResNet LoadResnet152(this ResNet resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    {
+        return LoadResnet152Async(resnet, strict, skip, loadedParameters).Result;
+    }
+
+    public static async Task<ResNet> LoadResnet152Async(this ResNet resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
     {
         // https://huggingface.co/whuanle/torchcsharp/resolve/main/dats/resnet152.dat
 
@@ -280,7 +316,12 @@ public static partial class MM
         return (resnet.load(location: modelPath, strict: strict, skip: skip, loadedParameters: loadedParameters) as ResNet)!;
     }
 
-    public static async Task<ResNet> LoadResnet18(this ResNet resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    public static ResNet LoadResnet18(this ResNet resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    {
+        return LoadResnet18Async(resnet, strict, skip, loadedParameters).Result;
+    }
+
+    public static async Task<ResNet> LoadResnet18Async(this ResNet resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
     {
         // https://huggingface.co/whuanle/torchcsharp/resolve/main/dats/resnet18.dat
 
@@ -314,8 +355,12 @@ public static partial class MM
         return (resnet.load(location: modelPath, strict: strict, skip: skip, loadedParameters: loadedParameters) as ResNet)!;
     }
 
+    public static ResNet LoadResnet34(this ResNet resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    {
+        return LoadResnet34Async(resnet, strict, skip, loadedParameters).Result;
+    }
 
-    public static async Task<ResNet> LoadResnet34(this ResNet resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    public static async Task<ResNet> LoadResnet34Async(this ResNet resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
     {
         // https://huggingface.co/whuanle/torchcsharp/resolve/main/dats/resnet34.dat
 
@@ -349,8 +394,12 @@ public static partial class MM
         return (resnet.load(location: modelPath, strict: strict, skip: skip, loadedParameters: loadedParameters) as ResNet)!;
     }
 
+    public static ResNet LoadResnet50(this ResNet resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    {
+        return LoadResnet50Async(resnet, strict, skip, loadedParameters).Result;
+    }
 
-    public static async Task<ResNet> LoadResnet50(this ResNet resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    public static async Task<ResNet> LoadResnet50Async(this ResNet resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
     {
         // https://huggingface.co/whuanle/torchcsharp/resolve/main/dats/resnet50.dat
 
@@ -384,7 +433,12 @@ public static partial class MM
         return (resnet.load(location: modelPath, strict: strict, skip: skip, loadedParameters: loadedParameters) as ResNet)!;
     }
 
-    public static async Task<VGG> LoadVG11(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    public static VGG LoadVG11(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    {
+        return LoadVG11Async(resnet, strict, skip, loadedParameters).Result;
+    }
+
+    public static async Task<VGG> LoadVG11Async(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
     {
         // https://huggingface.co/whuanle/torchcsharp/resolve/main/dats/vgg11.dat
 
@@ -418,7 +472,12 @@ public static partial class MM
         return (resnet.load(location: modelPath, strict: strict, skip: skip, loadedParameters: loadedParameters) as VGG)!;
     }
 
-    public static async Task<VGG> LoadVG11BN(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    public static VGG LoadVG11BN(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    {
+        return LoadVG11BNAsync(resnet, strict, skip, loadedParameters).Result;
+    }
+
+    public static async Task<VGG> LoadVG11BNAsync(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
     {
         // https://huggingface.co/whuanle/torchcsharp/resolve/main/dats/vgg11_bn.dat
 
@@ -452,8 +511,12 @@ public static partial class MM
         return (resnet.load(location: modelPath, strict: strict, skip: skip, loadedParameters: loadedParameters) as VGG)!;
     }
 
+    public static VGG LoadVG13(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    {
+        return LoadVG13Async(resnet, strict, skip, loadedParameters).Result;
+    }
 
-    public static async Task<VGG> LoadVG13(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    public static async Task<VGG> LoadVG13Async(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
     {
         // https://huggingface.co/whuanle/torchcsharp/resolve/main/dats/vgg13.dat
 
@@ -487,7 +550,12 @@ public static partial class MM
         return (resnet.load(location: modelPath, strict: strict, skip: skip, loadedParameters: loadedParameters) as VGG)!;
     }
 
-    public static async Task<VGG> LoadVG13BN(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    public static VGG LoadVG13BN(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    {
+        return LoadVG13BNAsync(resnet, strict, skip, loadedParameters).Result;
+    }
+
+    public static async Task<VGG> LoadVG13BNAsync(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
     {
         // https://huggingface.co/whuanle/torchcsharp/resolve/main/dats/vgg13_bn.dat
 
@@ -521,8 +589,12 @@ public static partial class MM
         return (resnet.load(location: modelPath, strict: strict, skip: skip, loadedParameters: loadedParameters) as VGG)!;
     }
 
+    public static VGG LoadVG16(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    {
+        return LoadVG16Async(resnet, strict, skip, loadedParameters).Result;
+    }
 
-    public static async Task<VGG> LoadVG16(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    public static async Task<VGG> LoadVG16Async(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
     {
         // https://huggingface.co/whuanle/torchcsharp/resolve/main/dats/vgg16.dat
 
@@ -556,7 +628,13 @@ public static partial class MM
         return (resnet.load(location: modelPath, strict: strict, skip: skip, loadedParameters: loadedParameters) as VGG)!;
     }
 
-    public static async Task<VGG> LoadVG16BN(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+
+    public static VGG LoadVG16BN(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    {
+        return LoadVG16BNAsync(resnet, strict, skip, loadedParameters).Result;
+    }
+
+    public static async Task<VGG> LoadVG16BNAsync(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
     {
         // https://huggingface.co/whuanle/torchcsharp/resolve/main/dats/vgg16_bn.dat
 
@@ -590,7 +668,12 @@ public static partial class MM
         return (resnet.load(location: modelPath, strict: strict, skip: skip, loadedParameters: loadedParameters) as VGG)!;
     }
 
-    public static async Task<VGG> LoadVG19(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    public static VGG LoadVG19(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    {
+        return LoadVG19Async(resnet, strict, skip, loadedParameters).Result;
+    }
+
+    public static async Task<VGG> LoadVG19Async(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
     {
         // https://huggingface.co/whuanle/torchcsharp/resolve/main/dats/vgg19.dat
 
@@ -624,7 +707,13 @@ public static partial class MM
         return (resnet.load(location: modelPath, strict: strict, skip: skip, loadedParameters: loadedParameters) as VGG)!;
     }
 
-    public static async Task<VGG> LoadVG19BN(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+
+    public static VGG LoadVG19BN(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
+    {
+        return LoadVG19BNAsync(resnet, strict, skip, loadedParameters).Result;
+    }
+
+    public static async Task<VGG> LoadVG19BNAsync(this VGG resnet, bool strict = true, IList<string>? skip = null, Dictionary<string, bool>? loadedParameters = null)
     {
         // https://huggingface.co/whuanle/torchcsharp/resolve/main/dats/vgg19_bn.dat
 
