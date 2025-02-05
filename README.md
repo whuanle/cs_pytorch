@@ -4,13 +4,17 @@
 
 作者：痴者工良
 
-地址：
+教程地址：
 
 [https://torch.whuanle.cn](https://torch.whuanle.cn)
 
-[https://torch.anyai.wiki](https://torch.anyai.wiki)
+<br />
 
+电子书仓库：https://github.com/whuanle/cs_pytorch
 
+Maomi.Torch 项目仓库：https://github.com/whuanle/Maomi.Torch
+
+<br />
 
 ## 导读
 

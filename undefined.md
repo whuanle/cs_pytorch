@@ -4,13 +4,17 @@
 
 作者：痴者工良
 
-地址：
+教程地址：
 
 [https://torch.whuanle.cn](https://torch.whuanle.cn)
 
-[https://torch.anyai.wiki](https://torch.anyai.wiki)
+<br />
 
+电子书仓库：https://github.com/whuanle/cs_pytorch
 
+Maomi.Torch 项目仓库：https://github.com/whuanle/Maomi.Torch
+
+<br />
 
 ## 导读
 
@@ -34,5 +38,8 @@
   * [线性代数基础](./01.base/03.linear.md)
   * [微积分和梯度下降](./01.base/04.higher.md)
   * [概率论基础](./01.base/05.odds.md)
-  
-* [未整理](other/README.md)
+* [第二部分](02.start.README.md)
+  *  [神经网络基础知识](02.start\01.neural_network.md) 
+  *  [使用神经网络训练模型-案例一](02.start/02.start_torch.md) 
+  *  [使用神经网络训练模型-案例二](02.start/03.xl.md) 
+  *  [使用预训练模型](02.start/04.models.md) 
