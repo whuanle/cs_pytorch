@@ -12,4 +12,5 @@
   * [使用神经网络训练模型-案例一](./02.start/02.start_torch.md) 
   * [使用神经网络训练模型-案例二](./02.start/03.xl.md) 
   * [使用预训练模型](./02.start/04.models.md) 
-
+* [未整理]()
+  *  [生成式对抗网络](03.image\dcgan_faces_tutorial.md) 
