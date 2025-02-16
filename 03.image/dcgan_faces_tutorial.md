@@ -575,11 +575,11 @@ netD.save("samples/netd.dat");
 
 <br />
 
-官方示例推荐进行 25 轮训练，这里为了节约时间，只做了 5 轮训练，由于笔者使用使用 A100 机器训练，训练 5 轮大概时间：
+按照官方示例推荐进行 25 轮训练，由于笔者使用使用 4060TI 8G 机器训练，训练 25 轮大概时间：
 
 ```
 Training finished.
-Training Time: 00:06:28.2993490
+Training Time: 00:49:45.6976041
 ```
 
 <br />
@@ -588,11 +588,21 @@ Training Time: 00:06:28.2993490
 
 ![image-20250210183009016](images/image-20250210183009016.png)
 
-<br />第五轮训练生成：
+<br />第一轮训练生成：
 
-![image-20250210191335839](images/image-20250210191335839.png)
+![image-20250210205818778](images/image-20250210205818778.png)
 
 <br />
+
+第 25 轮生成的：
+
+![image-20250210214910109](images/image-20250210214910109.png)
+
+<br />
+
+虽然还是有些抽象，但生成结果比之前好一些了。
+
+
 
 在 dcgan_out 项目中开业看到，使用 5 轮训练结果输出的模型，生成图像：
 
@@ -629,6 +639,6 @@ var fake_images = netG.call(fixed_noise);
 fake_images.SaveJpeg("fake_images.jpg");
 ```
 
-<br />效果比较魔幻：
+<br />虽然还是有些抽象，但确实还行。
 
-![image-20250210191441431](images/image-20250210191441431.png)
+![fake_images](images/fake_images.jpg)
